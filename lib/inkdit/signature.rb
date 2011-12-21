@@ -16,5 +16,14 @@ module Inkdit
     def signed_at
       Time.parse(params['signed_at'])
     end
+
+    def contract
+      return unless @params['contract']
+      Inkdit::Contract.new @client, @params['contract']
+    end
+
+    def inspect
+      "#<#{self.class.inspect} params=#{@params}>"
+    end
   end
 end

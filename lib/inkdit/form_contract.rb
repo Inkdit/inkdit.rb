@@ -12,11 +12,19 @@ module Inkdit
       @params['content']
     end
 
-    def sign!(if_updated_at)
-      # FIXME: don't hardcode this URL here.
-      params = { :if_updated_at => if_updated_at }
-      response = @client.post '/v1/offers/x53c396c3de147b54/signatures', { :body => params.to_json, :headers => { 'Content-Type' => 'application/json' } }
-      response.parsed
+    def signatures_link
+      @params['links']['signatures']
+    end
+
+    def content_updated_at
+      @params['content_updated_at']
+    end
+
+    def sign!
+      params = { :if_updated_at => self.content_updated_at }
+      response = @client.post self.signatures_link, { :body => params.to_json, :headers => { 'Content-Type' => 'application/json' } }
+
+      Inkdit::Signature.new(@client, response.parsed)
     end
   end
 end

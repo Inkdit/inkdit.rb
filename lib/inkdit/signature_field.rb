@@ -19,5 +19,9 @@ module Inkdit
 
       Inkdit::Signature.new(@client, response.parsed)
     end
+
+    def inspect
+      "#<#{self.class.inspect} params=#{@params}>"
+    end
   end
 end

@@ -22,6 +22,10 @@ module Inkdit
       self.url == other_resource.url
     end
 
+    def inspect
+      "#<#{self.class.inspect} params=#{@params}>"
+    end
+
   private
 
     def params=(params)
