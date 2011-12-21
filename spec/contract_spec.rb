@@ -1,11 +1,13 @@
 require 'time'
 
+require 'spec_helper'
+
 describe Inkdit::Contract do
   before do
     @client = Inkdit::Client.new(Inkdit::Config['access_token'])
   end
 
-  it 'lets you create a contract' do
+  it 'allows you to manipulate a contract' do
     entity = @client.get_entity
 
     contract_name = "API Test #{Time.now.iso8601}"
@@ -28,5 +30,21 @@ describe Inkdit::Contract do
     # the new contract should appear in the list of contracts
     contracts = entity.get_contracts
     contracts.find { |c| c.name == contract_name }.should_not be_nil
+
+    # the new contract can be signed
+    #
+    # first we need to fetch the full representation of the contract
+    # (since the other representation doesn't include signatures)
+    contract.fetch!
+
+    contract.signatures.length.should == 1
+    signature_field = contract.signatures.first
+
+    signature = signature_field.sign!
+
+    signature.signed_by.should    == entity
+    signature.on_behalf_of.should == entity
   end
+
+  pending 'sharing a contract (this is tough to do because it requires an entity URL)'
 end

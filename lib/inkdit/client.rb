@@ -21,46 +21,44 @@ module Inkdit
     end
 
     def get(path)
-      when_debugging do
-        puts '---'
-        puts "GET #{path}"
-        puts
-      end
-
-      response = access_token.get(path)
-
-      when_debugging do
-        puts response.status
-        puts response.body
-        puts
-      end
-
-      checked_response(response)
+      request(:get, path, {})
     end
 
     def post(path, params)
-      when_debugging do
-        puts '---'
-        puts "POST #{path}"
-        puts params.inspect
-        puts
-      end
+      request(:post, path, params)
+    end
 
-      response = access_token.post(path, params)
+    def put(path, params)
+      request(:put, path, params)
+    end
 
-      when_debugging do
-        puts response.status
-        puts response.body
-        puts
-      end
-
-      checked_response(response)
+    def delete(path, params)
+      request(:delete, path, {})
     end
 
   private
 
     def oauth_client
       @_oauth_client ||= Inkdit.oauth_client
+    end
+
+    def request(method, path, params)
+      when_debugging do
+        puts '---'
+        puts "#{method.to_s.upcase} #{path}"
+        puts params.inspect
+        puts
+      end
+
+      response = access_token.send(method, path, params)
+
+      when_debugging do
+        puts response.status
+        puts response.body
+        puts
+      end
+
+      checked_response(response)
     end
 
     def checked_response(response)

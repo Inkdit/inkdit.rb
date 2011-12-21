@@ -1,10 +1,5 @@
 module Inkdit
-  class Entity
-    def initialize(client, params)
-      @client = client
-      @params = params
-    end
-
+  class Entity < Resource
     def type
       @params['type']
     end

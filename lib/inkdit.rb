@@ -1,11 +1,17 @@
 require "inkdit/version"
 
 require "inkdit/client"
+require "inkdit/resource"
+
 require "inkdit/entity"
+
 require "inkdit/contract"
 require "inkdit/form_contract"
 
-require 'oauth2'
+require "inkdit/signature"
+require "inkdit/signature_field"
+
+require "oauth2"
 
 module Inkdit
   Config = {}

@@ -1,10 +1,5 @@
 module Inkdit
-  class Contract
-    def initialize(client, params)
-      @client = client
-      @params = params
-    end
-
+  class Contract < Resource
     def name
       @params['name']
     end
@@ -19,6 +14,20 @@ module Inkdit
 
     def sharing_link
       @params['links']['shared-with']
+    end
+
+    def content_updated_at
+      @params['content_updated_at']
+    end
+
+    def signatures
+      @params['signatures'].map do |s|
+        if s['signed_by']
+          Inkdit::Signature.new(@client, s)
+        else
+          Inkdit::SignatureField.new(@client, self, s)
+        end
+      end
     end
 
     def self.create(client, owner, params)

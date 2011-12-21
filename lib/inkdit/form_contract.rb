@@ -1,15 +1,5 @@
 module Inkdit
-  class FormContract
-    def initialize(client, opts)
-      @client = client
-
-      if opts.is_a? String
-        @url    = opts
-      else
-        @params = opts
-      end
-    end
-
+  class FormContract < Resource
     def content_updated_at
       @params['content_updated_at']
     end
@@ -20,11 +10,6 @@ module Inkdit
 
     def content
       @params['content']
-    end
-
-    def fetch!
-      response = @client.get(@url)
-      @params  = response.parsed
     end
 
     def sign!(if_updated_at)
