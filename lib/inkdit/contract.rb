@@ -9,6 +9,10 @@ module Inkdit
       @params['name']
     end
 
+    def test?
+      @params['test']
+    end
+
     def html_link
       @params['links']['html']
     end

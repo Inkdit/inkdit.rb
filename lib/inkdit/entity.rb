@@ -5,6 +5,10 @@ module Inkdit
       @params = params
     end
 
+    def type
+      @params['type']
+    end
+
     def label
       @params['label']
     end
@@ -22,6 +26,10 @@ module Inkdit
       response.parsed['resources'].map do |contract_params|
         Contract.new @client, contract_params
       end
+    end
+
+    def inspect
+      "#<Inkdit::Entity type=#{type} label=#{label}>"
     end
   end
 end

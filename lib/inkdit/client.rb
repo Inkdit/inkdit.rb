@@ -16,31 +16,43 @@ module Inkdit
       Entity.new(self, entity)
     end
 
+    def when_debugging
+      yield if Inkdit::Config['debug']
+    end
+
     def get(path)
-      puts '---'
-      puts "GET #{path}"
-      puts
+      when_debugging do
+        puts '---'
+        puts "GET #{path}"
+        puts
+      end
 
       response = access_token.get(path)
 
-      puts response.status
-      puts response.body
-      puts
+      when_debugging do
+        puts response.status
+        puts response.body
+        puts
+      end
 
       checked_response(response)
     end
 
     def post(path, params)
-      puts '---'
-      puts "POST #{path}"
-      puts params.inspect
-      puts
+      when_debugging do
+        puts '---'
+        puts "POST #{path}"
+        puts params.inspect
+        puts
+      end
 
       response = access_token.post(path, params)
 
-      puts response.status
-      puts response.body
-      puts
+      when_debugging do
+        puts response.status
+        puts response.body
+        puts
+      end
 
       checked_response(response)
     end

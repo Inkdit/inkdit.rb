@@ -5,6 +5,8 @@ require "inkdit/entity"
 require "inkdit/contract"
 require "inkdit/form_contract"
 
+require 'oauth2'
+
 module Inkdit
   Config = {}
 
