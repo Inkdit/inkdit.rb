@@ -20,6 +20,9 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency "oauth2"
 
+  # documentation
+  s.add_development_dependency "yard"
+
   # test dependencies
   s.add_development_dependency "rspec"
   s.add_development_dependency "vcr"
