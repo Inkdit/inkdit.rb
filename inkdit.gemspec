@@ -9,7 +9,11 @@ Gem::Specification.new do |s|
   s.email       = ["brendan@inkdit.com"]
   s.homepage    = "https://developer.inkdit.com/"
   s.summary     = %q{A library for using the Inkdit API to sign, share and store contracts}
-  s.description = %q{This is both a working Ruby gem and a code sample that other client implementations can work from.}
+  s.description = <<END
+A library for using the Inkdit API to sign, share and store contracts.
+
+This is both a working Ruby gem and a code sample that other client implementations can work from.
+END
 
   s.rubyforge_project = "inkdit"
 
