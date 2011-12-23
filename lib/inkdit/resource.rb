@@ -1,7 +1,11 @@
 module Inkdit
+  # some resource (in the REST sense) in the system
   class Resource
+    # the URL of this resource
     attr_reader :url
 
+    # @param [Client]      client the client to use this resource with
+    # @param [String,Hash] opts   either the resource's URL, or a hash describing the resource
     def initialize(client, opts)
       @client = client
 
@@ -13,6 +17,7 @@ module Inkdit
       end
     end
 
+    # retrieve this resource using its URL.
     def fetch!
       response = @client.get(self.url)
       @params  = response.parsed

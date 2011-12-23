@@ -1,13 +1,36 @@
 module Inkdit
+  # Represents an {https://developer.inkdit.com/docs/read/Contract_Description Inkdit Contract}.
   class Contract < Resource
+    # create a new contract.
+    #
+    # @param [Client] client the client to create this contract with
+    # @param [Entity] owner  the entity that will own this contract
+    # @param [Hash]   params the details of the new contract.
+    #                        this should include the basic details required in a
+    #                        {https://developer.inkdit.com/docs/read/Contract_Description Contract Description}.
+    #
+    # @return [Contract] contract the newly created contract
+    def self.create(client, owner, params)
+      response = client.post owner.contracts_link, { :body => params.to_json, :headers => { 'Content-Type' => 'application/json' } }
+      self.new(client, response.parsed)
+    end
+
+    # @return [String] a human-readable name for the contract
     def name
       @params['name']
     end
 
+    # @return [String] the contract's content
+    def content
+      @params['content']
+    end
+
+    # whether the cantract is a test contract or not
     def test?
       @params['test']
     end
 
+    # the URL of this contract's HTML representation.
     def html_link
       @params['links']['html']
     end
@@ -16,10 +39,12 @@ module Inkdit
       @params['links']['shared-with']
     end
 
+    # an opaque string indicating the version of the contract's content
     def content_updated_at
       @params['content_updated_at']
     end
 
+    # @return [Array<Signature,SignatureField>] this contract's signatures and unsigned signature fields
     def signatures
       @params['signatures'].map do |s|
         if s['signed_by']
@@ -30,11 +55,8 @@ module Inkdit
       end
     end
 
-    def self.create(client, owner, params)
-      response = client.post owner.contracts_link, { :body => params.to_json, :headers => { 'Content-Type' => 'application/json' } }
-      self.new(client, response.parsed)
-    end
-
+    # @param [Entity] individual the individual who should be connected to the contract
+    # @param [Entity] entity     the entity that the individual should be connected to the contract through
     def share_with(individual, entity)
       params = {
         :individual => {

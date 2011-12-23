@@ -1,17 +1,5 @@
 require 'spec_helper'
 
-# how to obtain the access token and refresh token:
-# 1. visit this url:
-#   Inkdit.authorization_code_url([:read, :write, :sign], 'http://example.org/')
-#
-# 2. extract the authorization code from the URL that you get redirected to (it's the 'code' parameter)
-# 3. call Inkdit.get_token(code, 'http://example.org/')
-
-#token = Inkdit.get_token(code, 'http://example.org/')
-#p token.token
-#p token.refresh_token
-#p token.expires_at
-
 describe Inkdit::Client do
   before do
     @client = Inkdit::Client.new(Inkdit::Config['access_token'])

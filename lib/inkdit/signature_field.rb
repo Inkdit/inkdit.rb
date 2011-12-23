@@ -1,4 +1,5 @@
 module Inkdit
+  # Represents an unsigned {https://developer.inkdit.com/docs/read/Signature_Description signature placeholder}.
   class SignatureField
     def initialize(client, contract, params)
       @client   = client
@@ -6,10 +7,13 @@ module Inkdit
       @params   = params
     end
 
+    # @return [String] the URL of this signature field
     def url
       @params['url']
     end
 
+    # sign this field as the user and entity associated with the current access token.
+    # @return [Signature] the newly-created signature
     def sign!
       params = {
         :if_updated_at => @contract.content_updated_at
