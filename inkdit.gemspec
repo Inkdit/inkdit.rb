@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = Inkdit::VERSION
   s.authors     = ["Brendan Taylor"]
   s.email       = ["brendan@inkdit.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "https://developer.inkdit.com/"
+  s.summary     = %q{A library for using the Inkdit API to sign, share and store contracts}
+  s.description = %q{This is both a working Ruby gem and a code sample that other client implementations can work from.}
 
   s.rubyforge_project = "inkdit"
 
