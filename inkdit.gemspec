@@ -20,6 +20,11 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency "oauth2"
 
+  # test dependencies
   s.add_development_dependency "rspec"
   s.add_development_dependency "vcr"
+
+  # dependencies for our access token getter
+  s.add_development_dependency "sinatra"
+  s.add_development_dependency "haml"
 end

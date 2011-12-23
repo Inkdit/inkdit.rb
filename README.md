@@ -64,3 +64,16 @@ If you know the URL of a form contract, you can sign it:
     form_contract = Inkdit::FormContract.new client, form_contract_url
     form_contract.fetch!
     form_contract.sign!
+
+## Running the Specs ##
+
+To run the specs you need a config.yml file containing your API key, shared secret, and access token.
+Once you've obtained an API key, there's a demo application that can be used to obtain an access token:
+
+    ./script/get_access_token.rb
+
+Then visit http://localhost:4567/ in your browser.
+
+Once you've entered your API key and shared scret, you will be prompted to log
+into Inkdit and authorize the application. When the application is authorized, it will produce a file that you can copy and paste into config.yml.
+
