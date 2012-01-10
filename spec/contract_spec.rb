@@ -14,7 +14,7 @@ describe Inkdit::Contract do
 
     params = {
       :name    => contract_name,
-      :content => "<contract> <signature id='1' /></contract>",
+      :content => "I agree etc. etc. etc.\n##signature##",
       :test    => true
     }
 
