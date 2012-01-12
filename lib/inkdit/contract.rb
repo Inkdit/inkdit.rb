@@ -57,8 +57,8 @@ module Inkdit
       end
     end
 
-    # @param [Entity] individual the individual who should be connected to the contract
-    # @param [Entity] entity     the entity that the individual should be connected to the contract through
+    # @param [String] individual the url of an individual who should be connected to the contract
+    # @param [String] entity     the url of an entity that the individual should be connected to the contract through
     def share_with(individual, entity)
       params = {
         :individual => {
