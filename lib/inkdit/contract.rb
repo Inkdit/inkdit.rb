@@ -12,6 +12,8 @@ module Inkdit
     # @return [Contract] contract the newly created contract
     def self.create(client, owner, params)
       response = client.post owner.contracts_link, { :body => params.to_json, :headers => { 'Content-Type' => 'application/json' } }
+      raise Inkdit::Error.new(response) unless response.status == 201
+
       self.new(client, response.parsed)
     end
 

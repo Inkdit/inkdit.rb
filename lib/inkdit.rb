@@ -61,4 +61,22 @@ module Inkdit
 
   # an exception that's raised when a request fails due to an invalid access token
   class Unauthorized < Exception; end
+
+  # a generic exception raised when an request fails for any other reason
+  class Error < Exception
+    attr_reader :response
+
+    def initialize(response)
+      @response = response
+      super()
+    end
+
+    def message
+      "response.status=#{response.status} response.body=#{response.body.inspect}"
+    end
+
+    def inspect
+      "#<#{self.class.inspect} #{self.message}>"
+    end
+  end
 end

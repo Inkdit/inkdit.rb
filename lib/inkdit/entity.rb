@@ -25,6 +25,8 @@ module Inkdit
     # @return [Array<Contract>] the contracts in this entity's Contract Collection
     def get_contracts
       response = @client.get(contracts_link)
+      raise Inkdit::Error.new(response) unless response.status == 200
+
       response.parsed['resources'].map do |contract_params|
         Contract.new @client, contract_params
       end

@@ -46,5 +46,22 @@ describe Inkdit::Contract do
     signature.on_behalf_of.should == entity
   end
 
-  pending 'sharing a contract (this is tough to do because it requires an entity URL)'
+  pending 'allows you to share a contract (this is tough to do because it requires an entity URL)' do
+    entity = @client.get_entity
+
+    contract_name = "API Test #{Time.now.iso8601}"
+
+    params = {
+      :name    => contract_name,
+      :content => "I agree etc. etc. etc.\n##signature##",
+      :test    => true
+    }
+
+    contract = Inkdit::Contract.create @client, entity, params
+
+    # this shouldn't actually return a response but whatevs.
+    response = contract.share_with(SOME_OTHER_USER, SOME_OTHER_USER)
+
+    response.status.should == 201
+  end
 end
