@@ -74,7 +74,9 @@ module Inkdit
     # raises {Inkdit::Unauthorized} if the response indicates an invalid access token.
     # @return [OAuth2::Response]
     def checked_response(response)
-      if response.status == 401 and response.headers['www-authenticate'].match /invalid_token/
+      if response.status == 401 and
+        response.headers['www-authenticate'] and
+        response.headers['www-authenticate'].match /invalid_token/
         # wrong access token or the user rescinded the app's access.
         # TODO: properly parse the header
         # Bearer realm="api.inkdit.com", error="invalid_token"
