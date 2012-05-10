@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    inkdit (0.0.1)
+    inkdit (1.0.0)
       oauth2
 
 GEM
@@ -9,16 +9,16 @@ GEM
   specs:
     addressable (2.2.6)
     diff-lcs (1.1.3)
-    faraday (0.7.5)
-      addressable (~> 2.2.6)
-      multipart-post (~> 1.1.3)
-      rack (>= 1.1.0, < 2)
+    faraday (0.7.6)
+      addressable (~> 2.2)
+      multipart-post (~> 1.1)
+      rack (~> 1.1)
     haml (3.1.3)
-    multi_json (1.0.4)
-    multipart-post (1.1.4)
-    oauth2 (0.5.1)
-      faraday (~> 0.7.4)
-      multi_json (~> 1.0.3)
+    multi_json (1.3.4)
+    multipart-post (1.1.5)
+    oauth2 (0.5.2)
+      faraday (~> 0.7)
+      multi_json (~> 1.0)
     rack (1.3.5)
     rack-protection (1.1.4)
       rack
@@ -35,7 +35,6 @@ GEM
       rack-protection (~> 1.1, >= 1.1.2)
       tilt (~> 1.3, >= 1.3.3)
     tilt (1.3.3)
-    vcr (1.11.3)
     yard (0.7.2)
 
 PLATFORMS
@@ -46,5 +45,4 @@ DEPENDENCIES
   inkdit!
   rspec
   sinatra
-  vcr
   yard
