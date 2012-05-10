@@ -35,6 +35,15 @@ get '/get-auth-code' do
 end
 
 get '/got-auth-code' do
+  if params[:error]
+    return <<END
+    <p>Uh-oh, we ran into a problem!</p>
+
+    <p>Error: <code>#{params[:error]}</code></p>
+    <p>Description: #{params[:error_description]}</p>
+END
+  end
+
   auth_code = params[:code]
 
   @access_token = Inkdit.get_token(params[:code], url('/got-auth-code'))
