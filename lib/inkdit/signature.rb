@@ -13,7 +13,9 @@ module Inkdit
 
     # @return [Entity] the entity this field was signed on behalf of
     def on_behalf_of
-      Inkdit::Entity.new(@client, @params['on_behalf_of'])
+      if @params['on_behalf_of']
+        Inkdit::Entity.new(@client, @params['on_behalf_of'])
+      end
     end
 
     # @return [Time] when this field was signed

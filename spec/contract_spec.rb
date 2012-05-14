@@ -40,10 +40,17 @@ describe Inkdit::Contract do
     contract.signatures.length.should == 1
     signature_field = contract.signatures.first
 
+    designated_line = signature_field.designate :individual => entity
+
     signature = signature_field.sign!
 
-    signature.signed_by.should    == entity
-    signature.on_behalf_of.should == entity
+    signature.signed_by.should == entity
+
+    if entity.type == 'individual'
+      signature.on_behalf_of.should be_nil
+    else
+      signature.on_behalf_of.should == entity
+    end
   end
 
   pending 'allows you to share a contract (this is tough to do because it requires an entity URL)' do
